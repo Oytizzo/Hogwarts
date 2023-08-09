@@ -3,4 +3,5 @@ from django.http import HttpResponse
 
 
 def log_hello(request):
-    return HttpResponse("Hello")
+    # return HttpResponse("Hello")
+    return render(request, "hello.html")
