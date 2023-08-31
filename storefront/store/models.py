@@ -8,3 +8,11 @@ class Product(models.Model):
     inventory = models.IntegerField()
     first_entry = models.DateTimeField(auto_now_add=True)   # auto_now_add updates one time when first product was added
     last_update = models.DateTimeField(auto_now=True)   # auto_now update everytime product updates
+
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=20)
+    dob = models.DateField(null=True)
