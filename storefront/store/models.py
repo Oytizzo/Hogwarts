@@ -1,6 +1,9 @@
 from django.db import models
 
-# Create your models here.
+class Collection(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class Product(models.Model):
     # sku = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=255)    #varchar(255)
@@ -9,6 +12,7 @@ class Product(models.Model):
     inventory = models.IntegerField()
     first_entry = models.DateTimeField(auto_now_add=True)   # auto_now_add updates one time when first product was added
     last_update = models.DateTimeField(auto_now=True)   # auto_now update everytime product updates
+    Collection = models.ForeignKey(to=Collection, on_delete=models.PROTECT)
 
 
 class Customer(models.Model):
