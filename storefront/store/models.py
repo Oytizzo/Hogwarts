@@ -2,6 +2,8 @@ from django.db import models
 
 
 class Promotion(models.Model):
+    # product_set <default>
+    # products <if related_name="products">
     description = models.CharField(max_length=255)
     discount = models.FloatField()
 
@@ -19,6 +21,8 @@ class Product(models.Model):
     first_entry = models.DateTimeField(auto_now_add=True)   # auto_now_add updates one time when first product was added
     last_update = models.DateTimeField(auto_now=True)   # auto_now update everytime product updates
     Collection = models.ForeignKey(to=Collection, on_delete=models.PROTECT)
+    # promotions = models.ManyToManyField(to=Promotion, related_name="products")
+    promotions = models.ManyToManyField(to=Promotion)
 
 
 class Customer(models.Model):
