@@ -9,7 +9,7 @@ class Promotion(models.Model):
 
 
 class Collection(models.Model):
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     featured_product = models.ForeignKey(to="Product", on_delete=models.SET_NULL, null=True, related_name="+")
 
 
@@ -20,7 +20,7 @@ class Product(models.Model):
     description = models.TextField()            #text
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)     # 999999.99
     inventory = models.IntegerField()
-    first_entry = models.DateTimeField(auto_now_add=True)   # auto_now_add updates one time when first product was added
+    first_entry = models.DateTimeField(auto_now_add=True, null=True)   # auto_now_add updates one time when first product was added
     last_update = models.DateTimeField(auto_now=True)   # auto_now update everytime product updates
     Collection = models.ForeignKey(to=Collection, on_delete=models.PROTECT)
     # promotions = models.ManyToManyField(to=Promotion, related_name="products")
@@ -40,7 +40,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
-    dob = models.DateField(null=True)
+    birth_date = models.DateField(null=True)
     membership = models.CharField(max_length=1, choices=MEMEBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
 
 
