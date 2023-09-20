@@ -6,6 +6,4 @@ from store.models import Product
 def log_hello(request):
     # return HttpResponse("Hello")
     query_set = Product.objects.all()
-    for product in query_set:
-        print(product)
-    return render(request, "hello.html")
+    return render(request, "hello.html", {"products": query_set})
