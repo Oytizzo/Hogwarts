@@ -1,9 +1,12 @@
 from django.db import models
+from django.core.validators import RegexValidator
+from django.utils.text import gettext_lazy as _
 
 
 class Promotion(models.Model):
     description = models.TextField()
     discount = models.FloatField()
+
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
@@ -58,6 +61,7 @@ class OrderItem(models.Model):
 class Address(models.Model):
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
+    zip = models.CharField(max_length=6, validators=[RegexValidator('^[0-9]{6}$', _('Invalid postal code'))])
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
